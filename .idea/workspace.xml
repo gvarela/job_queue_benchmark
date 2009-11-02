@@ -36,7 +36,7 @@
       <file leaf-file-name="seed.rake" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/tasks/seed.rake">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="3" selection-start="291" selection-end="291" vertical-scroll-proportion="0.11784976">
+            <state line="9" column="0" selection-start="288" selection-end="288" vertical-scroll-proportion="0.11784976">
               <folding />
             </state>
           </provider>
@@ -485,7 +485,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/tasks/seed.rake">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="3" selection-start="291" selection-end="291" vertical-scroll-proportion="0.11784976">
+        <state line="9" column="0" selection-start="288" selection-end="288" vertical-scroll-proportion="0.11784976">
           <folding />
         </state>
       </provider>

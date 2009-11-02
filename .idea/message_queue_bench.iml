@@ -20,6 +20,7 @@
       <requirement>
         <dependency name="sqlite3-ruby" version="0" bound="GREATER_OR_EQUAL" />
       </requirement>
+      <source from="vendor/plugins/delayed_job/spec/database.rb" />
       <source from="config/database.yml" />
     </requirement>
     <requirement>

@@ -31,3 +31,32 @@ Migrating to CreateImageFiles (20091102213914)
   [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_image_files_on_parent_id')[0m
   [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_image_files_on_image_id')[0m
   [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("images")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateImages (20091102213843)
+Migrating to CreateImageFiles (20091102213914)
+Migrating to CreateDelayedJobs (20091102223458)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (3.8ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TABLE "delayed_jobs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "priority" integer DEFAULT 0, "attempts" integer DEFAULT 0, "handler" text, "last_error" text, "run_at" datetime, "locked_at" datetime, "failed_at" datetime, "locked_by" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091102223458')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("delayed_jobs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("image_files")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_image_files_on_parent_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_image_files_on_image_id')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("images")[0m
