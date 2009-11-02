@@ -1,6 +1,11 @@
 class Image < ActiveRecord::Base
   has_one :image_file
 
+  def self.find_and_fetch_by_name(name)
+    image = Image.find_by_name(name)
+    image.fetch_image
+  end
+
   def image_data() nil; end
 
   def image_data=(file_data)
