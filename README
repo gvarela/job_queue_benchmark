@@ -10,6 +10,8 @@ Each of these tasks were created as jobs in Dj and Resque a varying number of ti
 Results Summary:
 We essentially confirmed our hypothesis that Dj doesn't scale when the queue becomes large. Synchronously fetching and saving images took took 91.7 seconds inline. Processing 1000 jobs of the that same task from a 500,000 job queue with one worker took 691.1 seconds in Dj, and 93.8 seconds in Resque. This means that Resque has very little overhead when compared to Dj which has huge database overhead. When we ran the same 1000 jobs with the same total number in the queue with 3 workers Dj took roughly 411 seconds and Resque took roughly 36 seconds. Thus Resque scales much better than Dj with more workers.
 
+Method:
+There are several rake tasks for seeding the database and the queues. After seeding the data I ran some benchmark tasks to time the execution. Take a look at benchmark.rake and seed.rake for examples.
 
 Raw Results:
 
