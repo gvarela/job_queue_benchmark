@@ -61,3 +61,29 @@ Queue benchmark
 85811 =>   7.830000   1.630000   9.460000 (410.615919)
 85810 =>   7.840000   1.670000   9.510000 (411.344920)
 
+
+* 5,000 row image table 500,000 row jobs table Resque queue single worker process:
+
+  Resque with just a basic AR find ( 1000 jobs )
+    user       system     total    real
+    1.080000   0.200000   1.280000 (  3.261001)
+
+  Resque with fetching an image off of akamai and doing an insert ( 1000 jobs )
+    user        system    total     real
+    15.610000   3.150000  18.760000 ( 93.730797)
+
+* 5,000 row image table 500,000 row jobs table Resque queue 3 worker processes:
+
+  Resque with just a basic AR find ( 1000 jobs / 333 per worker )
+    user       system     total    real
+    0.480000   0.180000   0.660000 (  2.446347)
+    0.480000   0.170000   0.650000 (  2.542048)
+    0.490000   0.180000   0.670000 (  2.551230)
+
+  Resque with fetching an image off of akamai and doing an insert ( 1000 jobs / 333 per worker )
+      user        system    total     real
+      5.930000   1.230000   7.160000 ( 35.850032)
+      6.010000   1.230000   7.240000 ( 36.007538)
+      5.950000   1.240000   7.190000 ( 36.010807)
+
+

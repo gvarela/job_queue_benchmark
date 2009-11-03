@@ -30,23 +30,62 @@ namespace :benchmark do
 
   namespace :resque do
 
-    task :run do
+    task :run => :environment do
       Rake::Task['resque:setup'].invoke rescue nil
 
       worker = Resque::Worker.new('*')
       worker.startup
 
       count = 0
-      Benchmark.measure do
-        while count <= 1000 do
-          if worker.process
+      t0, r0 = Benchmark.times, Time.now
+
+      while count <= 1000 do
+        worker.process
+        count += 1
+      end
+
+      t1, r1 = Benchmark.times, Time.now
+      puts Benchmark::Tms.new(t1.utime - t0.utime,
+                              t1.stime - t0.stime,
+                              t1.cutime - t0.cutime,
+                              t1.cstime - t0.cstime,
+                              r1.to_f - r0.to_f,
+                              '')
+
+      worker.unregister_worker
+    end
+
+    task :run_multiple => :environment do
+      Rake::Task['resque:setup'].invoke rescue nil
+
+      number = 3
+      number.times do
+        fork do
+
+          worker = Resque::Worker.new('*')
+          worker.startup
+
+          count = 0
+          t0, r0 = Benchmark.times, Time.now
+
+          while count <= 1000 / number do
+            worker.process
             count += 1
-          else
-            break
           end
+
+          t1, r1 = Benchmark.times, Time.now
+          puts Benchmark::Tms.new(t1.utime - t0.utime,
+                                  t1.stime - t0.stime,
+                                  t1.cutime - t0.cutime,
+                                  t1.cstime - t0.cstime,
+                                  r1.to_f - r0.to_f,
+                                  '')
+          worker.unregister_worker
+          
         end
       end
-      worker.unregister_worker
+
+
     end
   end
 

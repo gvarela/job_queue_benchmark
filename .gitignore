@@ -2,3 +2,5 @@
 log/
 tmp/
 config/database.yml
+public/image_files/
+dump.rdb
