@@ -1,6 +1,47 @@
 Queue benchmark
 
-Dj with just a basic AR find ( 1000 jobs )
-  user       system     total    real
-  3.710000   0.720000   4.430000 (473.825784)  [secs]
+* 5,000 row image table straight synchronous processing:
 
+  basic AR find with no queue ( 1,000 queries )
+    user       system     total    real
+    0.510000   0.060000   0.570000 (  2.094698)  [secs]
+
+  fetching an image off of akamai and doing an insert ( 1,000 inserts and image fetches )
+   user     system      total        real
+   15.080000   2.900000  17.980000 ( 91.660208)
+
+
+* 5,000 row image table 5,000 row jobs table dj queue single worker process:
+
+  Dj with just a basic AR find ( 1000 jobs )
+   user       system     total    real
+   3.140000   0.290000   3.430000 ( 10.598753)
+
+  Dj with fetching an image off of akamai and doing an insert ( 1000 jobs )
+   user       system     total     real
+   18.810000   3.090000  21.900000 ( 95.330724)
+   
+
+* 5,000 row image table 500,000 row jobs table dj queue single worker process:
+
+  Dj with just a basic AR find ( 1000 jobs )
+    user       system     total    real
+    3.710000   0.720000   4.430000 (473.825784)  [secs]
+
+  Dj with fetching an image off of akamai and doing an insert ( 1000 jobs )
+    user        system    total     real
+    19.610000   3.730000  23.340000 (691.071522)  [secs]
+
+* 5,000 row image table 5,000 row jobs table dj queue 3 worker processes:
+
+  Dj with just a basic AR find ( 1000 jobs / 333 per worker ) [This has a rather large standard deviation which is due to failed lock attempts]
+    user        system    total     real
+84180 =>   0.290000   0.170000   0.460000 (  1.257616)
+84178 =>   1.100000   0.260000   1.360000 (  4.334029)
+84179 =>   1.390000   0.280000   1.670000 (  5.335976)
+
+  Dj with fetching an image off of akamai and doing an insert ( 1000 jobs / 333 per worker )
+      user        system    total     real
+84307 =>   7.440000   1.370000   8.810000 ( 41.680948)
+84309 =>   7.500000   1.360000   8.860000 ( 42.371396)
+84308 =>   7.480000   1.360000   8.840000 ( 42.777726)
