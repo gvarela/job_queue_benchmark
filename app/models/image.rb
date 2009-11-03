@@ -2,6 +2,8 @@ require 'action_controller'
 require 'action_controller/test_process.rb'
 
 class Image < ActiveRecord::Base
+  include ResqueAsync
+  
   IMAGE_TEMP_PATH = File.join(RAILS_ROOT, 'tmp', 'images')
 
   has_one :image_file

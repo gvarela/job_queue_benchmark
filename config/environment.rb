@@ -16,6 +16,10 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
    config.gem "rio", :version => '0.4.2', :lib => 'rio'
+   config.gem "resque", :version => '1.0.0', :lib => 'resque'
+#   config.gem 'redis'
+#   config.gem 'redis-namespace'
+#   config.gem 'yajl-ruby'
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
