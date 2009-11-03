@@ -2,5 +2,5 @@ Queue benchmark
 
 Dj with just a basic AR find ( 1000 jobs )
   user       system     total    real
-  3.710000   0.720000   4.430000 (473.825784)
+  3.710000   0.720000   4.430000 (473.825784)  [secs]
 

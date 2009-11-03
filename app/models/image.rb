@@ -1,4 +1,9 @@
+require 'action_controller'
+require 'action_controller/test_process.rb'
+
 class Image < ActiveRecord::Base
+  IMAGE_TEMP_PATH = File.join(RAILS_ROOT, 'tmp', 'images')
+
   has_one :image_file
 
   def self.find_and_fetch_by_name(name)
@@ -10,12 +15,12 @@ class Image < ActiveRecord::Base
 
   def image_data=(file_data)
     return nil if file_data.nil? || file_data.size == 0
-    image.nil? ? create_image_file(:uploaded_data => file_data) : image_file.update_attributes(:uploaded_data => file_data)
+    image_file.nil? ? create_image_file(:uploaded_data => file_data) : image_file.update_attributes(:uploaded_data => file_data)
   end
 
   def fetch_image
-    return false unless image_url
-    temp_image_path = download_image_to_temp_file(image_url)
+    return false unless source_url
+    temp_image_path = download_image_to_temp_file(source_url)
     uploaded_image = ActionController::TestUploadedFile.new(temp_image_path, 'image/jpeg')
     self.image_data = uploaded_image
     File.delete temp_image_path
